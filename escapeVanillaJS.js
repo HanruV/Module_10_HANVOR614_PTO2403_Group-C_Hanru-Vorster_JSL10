@@ -28,12 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
   //
   // ROOM 2
   //
+
+  // comparing 2 sets of data to return values in common
   function findIntersection(setA, setB) {
     // 🪲 Bug: Incorrect logic
     const intersection = new Set([...setA].filter((item) => setB.has(item)));
     return intersection;
   }
 
+  //displaying the data in common of 2 new sets to the DOM with a click event
   document.getElementById("solveRoom2").addEventListener("click", () => {
     const jsConcepts = new Set(["closure", "scope", "hoisting", "async"]);
     // 🪲 Bug: What's mssing from JS concepts?
@@ -51,6 +54,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // ROOM 3
   //
 
+  async function navigateLabyrinth(directions) {
+    for (let direction of directions) {
+      // 🪲 Bug: No delay
+      new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log(`Navigating: ${direction.step}`);
+    }
+    return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
+  }
+
   // 🪲 Bug: Asynchronous function ?
   document.getElementById("solveRoom3").addEventListener("click", () => {
     fetch("directions.json")
@@ -63,12 +75,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-async function navigateLabyrinth(directions) {
-  for (let direction of directions) {
-    // 🪲 Bug: No delay
-    new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(`Navigating: ${direction.step}`);
-  }
-  return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
-}
