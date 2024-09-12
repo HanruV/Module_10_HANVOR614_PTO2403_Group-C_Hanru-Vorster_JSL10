@@ -1,4 +1,8 @@
-//Finding most recent book for room 1
+//
+// ROOM 1
+//
+
+//Finding most recently published book
 function findMostRecentBook(books) {
   return books.reduce((first, current) => {
     return new Date(current.published) > new Date(first.published)
@@ -11,7 +15,7 @@ function findMostRecentBook(books) {
 document.addEventListener("DOMContentLoaded", () => {
   // 🪲 Bug: Incorrect ID used for attaching the event listener - FIXED
   document.getElementById("solveRoom1").addEventListener("click", () => {
-    fetch("books.json")
+    fetch("./books.json")
       .then((response) => response.json())
       .then((books) => {
         const mostRecentBook = findMostRecentBook(books);
@@ -21,18 +25,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
+  //
+  // ROOM 2
+  //
+  function findIntersection(setA, setB) {
+    // 🪲 Bug: Incorrect logic
+    const intersection = new Set([...setA].filter((item) => setB.has(item)));
+    return intersection;
+  }
+
   document.getElementById("solveRoom2").addEventListener("click", () => {
-    const jsConcepts = new Set(["closure", "scope", "hoisting"]);
+    const jsConcepts = new Set(["closure", "scope", "hoisting", "async"]);
     // 🪲 Bug: What's mssing from JS concepts?
     const reactConcepts = new Set(["components", "jsx", "hooks", "async"]);
     // 🪲 Bug: Incorrect function call
-    const commonConcepts = findIntersection(jsConcepts, jsConcepts);
+    const commonConcepts = findIntersection(jsConcepts, reactConcepts);
     document.getElementById(
       "room2Result"
     ).textContent = `The code to unlock the door is: ${Array.from(
       commonConcepts
     ).join(", ")}`;
   });
+
+  //
+  // ROOM 3
+  //
 
   // 🪲 Bug: Asynchronous function ?
   document.getElementById("solveRoom3").addEventListener("click", () => {
@@ -46,12 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-function findIntersection(setA, setB) {
-  // 🪲 Bug: Incorrect logic
-  const intersection = new Set([...setA]);
-  return intersection;
-}
 
 async function navigateLabyrinth(directions) {
   for (let direction of directions) {
