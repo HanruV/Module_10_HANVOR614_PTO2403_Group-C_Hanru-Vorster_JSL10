@@ -1,3 +1,13 @@
+//Finding most recent book for room 1
+function findMostRecentBook(books) {
+  return books.reduce((first, current) => {
+    return new Date(current.published) > new Date(first.published)
+      ? current
+      : first;
+  });
+}
+
+//updating dom with a click
 document.addEventListener("DOMContentLoaded", () => {
   // 🪲 Bug: Incorrect ID used for attaching the event listener - FIXED
   document.getElementById("solveRoom1").addEventListener("click", () => {
@@ -36,14 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-function findMostRecentBook(books) {
-  return books.reduce((first, current) => {
-    return new Date(current.published) > new Date(first.published)
-      ? current
-      : first;
-  });
-}
 
 function findIntersection(setA, setB) {
   // 🪲 Bug: Incorrect logic
